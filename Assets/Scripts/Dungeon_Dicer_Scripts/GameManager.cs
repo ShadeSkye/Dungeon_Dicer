@@ -11,7 +11,7 @@ namespace DungeonDicer
 {
     internal class GameManager : MonoBehaviour
     {
-        static MapGenerator MapGeneratorInstance = new MapGenerator();
+        static MapGenerator MapGeneratorInstance;
 
         internal FighterBase.Fighters PlayerInstance = new FighterBase.Player();
 
@@ -27,6 +27,7 @@ namespace DungeonDicer
 
         public void Start()
         {
+            MapGeneratorInstance = new MapGenerator();
             VisualizeMap();
             //StartGame();
         }

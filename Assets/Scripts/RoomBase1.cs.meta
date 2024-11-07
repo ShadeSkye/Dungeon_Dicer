@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5696036872f13db4caa0c24895d9813c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - NorthDoor: {instanceID: 0}
+  - EastDoor: {instanceID: 0}
+  - SouthDoor: {instanceID: 0}
+  - WestDoor: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
