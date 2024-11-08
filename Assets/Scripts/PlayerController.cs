@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
             {
                 TurnRight();
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 if (_currentRoom != null)
                 {
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.W))
             {
                 RoomBase1 roomInFacingDirection = NextRoomInDirection();
-                if (roomInFacingDirection != null)
+                if (roomInFacingDirection != null && _isMoving == false)
                 {
                     StartMovement(roomInFacingDirection);
                 }
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
     private void StartMovement(RoomBase1 targetRoom)
     {
         _previousPosition = transform.position;
-        _moveToPosition = new Vector3(targetRoom.transform.position.x, 4, targetRoom.transform.position.z);
+        _moveToPosition = new Vector3(targetRoom.transform.position.x, 8, targetRoom.transform.position.z);
         _isMoving = true;
     }
 

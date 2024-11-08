@@ -13,4 +13,10 @@ public class TreasureRooms : RoomBase1
     {
         Debug.Log("theres lots of treasure in here!");
     }
+
+    public override void OnRoomSearched()
+    {
+        int randomInt = Random.Range(10, 50);
+        Debug.Log($"you found { randomInt } gold coins!");
+    }
 }

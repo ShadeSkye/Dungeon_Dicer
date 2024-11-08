@@ -30,7 +30,7 @@ public class RoomBase1 : MonoBehaviour
 
     public virtual void OnRoomSearched()
     {
-
+        Debug.Log("you find nothing");
     }
 
     public void SetRooms(RoomBase1 roomNorth, RoomBase1 roomEast, RoomBase1 roomSouth, RoomBase1 roomWest)

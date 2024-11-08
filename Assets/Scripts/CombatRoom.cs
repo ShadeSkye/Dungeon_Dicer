@@ -13,4 +13,9 @@ public class CombatRoom : RoomBase1
     {
         Debug.Log("enemies are here!");
     }
+
+    public override void OnRoomSearched()
+    {
+        Debug.Log("you found old weapons");
+    }
 }

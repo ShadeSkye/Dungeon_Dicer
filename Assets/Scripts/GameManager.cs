@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
         _playerController = Instantiate(PlayerPrefab, transform);
 
-        _playerController.transform.position = new Vector3(randomStartingRoom.Key.x, 4f, randomStartingRoom.Key.z);
+        _playerController.transform.position = new Vector3(randomStartingRoom.Key.x, 8f, randomStartingRoom.Key.z);
 
         _playerController.Setup();
 
