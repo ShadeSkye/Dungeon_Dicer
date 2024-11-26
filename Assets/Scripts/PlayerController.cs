@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour
     private float _movementTimer = 0.0f;
     private Vector3 _previousPosition;
     private Vector3 _moveToPosition;
+    internal bool _inCombat = false;
+
+    private int baseATK = 10;
+    private int maxHp = 50;
+    public int damage;
     
     public void Setup()
     {
@@ -96,6 +101,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider otherObject)
     {
         _currentRoom = otherObject.GetComponent<RoomBase1>();
+        _currentRoom.SetPlayerReference(this);
         _currentRoom.OnRoomEntered();
     }
 
@@ -107,60 +113,77 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (_isMoving)
+        if (GameManager.GamePaused == false)
         {
-            Vector3 currentPosition = Vector3.Slerp(_previousPosition, _moveToPosition, _movementTimer / MovementTime);
-            transform.position = currentPosition;
-            _movementTimer += Time.deltaTime;
-            if(_movementTimer > MovementTime)
+            if (_inCombat)
             {
-                _isMoving = false;
-                _movementTimer = 0.0f;
-                transform.position = _moveToPosition; //snap to final position
-            }
-        }
-        if (_isRotating)
-        {
-            //continue movement until finished
-            //quanternion.lerp for linear movement, quanternion.slerp for smoothed movement
-            Quaternion currentRotation = Quaternion.Slerp(_previousRotation, Quaternion.Euler(new Vector3(0, _rotationByDirection[_facingDirection])), _rotationTimer / RotationTime);
-
-            transform.rotation = currentRotation;
-
-            _rotationTimer += Time.deltaTime;
-            if(_rotationTimer > RotationTime)
-            {
-                _isRotating = false;
-                _rotationTimer = 0.0f;
-                SetFacingDirection(); //snap to final rotation
-            }
-        }
-        else
-        {
-            bool rotateLeft = Input.GetKeyDown(KeyCode.A);
-            bool rotateRight = Input.GetKeyDown(KeyCode.D);
-
-            if (rotateLeft && !rotateRight)
-            {
-                TurnLeft();
-            }
-            else if (rotateRight && !rotateLeft)
-            {
-                TurnRight();
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (_currentRoom != null)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    _currentRoom.OnRoomSearched();
+                    Debug.Log("You defeated the enemy!");
+                    _inCombat = false;
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.W))
+            else
             {
-                RoomBase1 roomInFacingDirection = NextRoomInDirection();
-                if (roomInFacingDirection != null && _isMoving == false)
+                if (_isMoving)
                 {
-                    StartMovement(roomInFacingDirection);
+                    Vector3 currentPosition = Vector3.Lerp(_previousPosition, _moveToPosition, _movementTimer / MovementTime);
+                    transform.position = currentPosition;
+                    _movementTimer += Time.deltaTime;
+                    if (_movementTimer > MovementTime)
+                    {
+                        _isMoving = false;
+                        _movementTimer = 0.0f;
+                        transform.position = _moveToPosition; //snap to final position
+                    }
+                }
+                else
+                {
+                    if (_isRotating)
+                    {
+                        //continue movement until finished
+                        //quanternion.lerp for linear movement, quanternion.slerp for smoothed movement
+                        Quaternion currentRotation = Quaternion.Slerp(_previousRotation, Quaternion.Euler(new Vector3(0, _rotationByDirection[_facingDirection])), _rotationTimer / RotationTime);
+
+                        transform.rotation = currentRotation;
+
+                        _rotationTimer += Time.deltaTime;
+                        if (_rotationTimer > RotationTime)
+                        {
+                            _isRotating = false;
+                            _rotationTimer = 0.0f;
+                            SetFacingDirection(); //snap to final rotation
+                        }
+                    }
+                    else
+                    {
+                        bool rotateLeft = Input.GetKeyDown(KeyCode.A);
+                        bool rotateRight = Input.GetKeyDown(KeyCode.D);
+
+                        if (rotateLeft && !rotateRight)
+                        {
+                            TurnLeft();
+                        }
+                        else if (rotateRight && !rotateLeft)
+                        {
+                            TurnRight();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            if (_currentRoom != null)
+                            {
+                                _currentRoom.OnRoomSearched();
+                            }
+                        }
+                        else if (Input.GetKeyDown(KeyCode.W))
+                        {
+                            RoomBase1 roomInFacingDirection = NextRoomInDirection();
+                            if (roomInFacingDirection != null && _isMoving == false)
+                            {
+                                StartMovement(roomInFacingDirection);
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -7,12 +7,19 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private MapManager GameMapPrefab;
     [SerializeField] private PlayerController PlayerPrefab;
-
+    [SerializeField] private GameManager _gameManager;
+    
     private MapManager _gameMap;
     private PlayerController _playerController;
 
-
+    public static bool GamePaused = false;
+    
     public void Start()
+    {
+        GameManagerSetup();
+    }
+
+    public void GameManagerSetup()
     {
         Debug.Log("GameManager Start Begins");
 
@@ -23,8 +30,6 @@ public class GameManager : MonoBehaviour
         StartGame();
 
         Debug.Log("GameManager Start Complete");
-
-        StartGame();
     }
 
     private void SetupMap()
@@ -38,15 +43,16 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager Setup Complete");
     }
 
+   
     private void SpawnPlayer()
     {
         Debug.Log("GameManager SpawnPlayer Begins");
 
-        var randomStartingRoom = _gameMap._rooms.ElementAt(Random.Range(0, _gameMap._rooms.Keys.Count));
+        var spawnRoom = _gameMap._rooms.ElementAt(0);
 
         _playerController = Instantiate(PlayerPrefab, transform);
 
-        _playerController.transform.position = new Vector3(randomStartingRoom.Key.x, 8f, randomStartingRoom.Key.z);
+        _playerController.transform.position = new Vector3(spawnRoom.Key.x, 8f, spawnRoom.Key.z);
 
         _playerController.Setup();
 
@@ -59,5 +65,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager StartGame Begins");
         Debug.Log("GameManager StartGame Complete");
+    }
+
+    public void ResumeGame()
+    {
+        GamePaused = false;
     }
 } 

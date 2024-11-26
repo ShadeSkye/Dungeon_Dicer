@@ -4,18 +4,39 @@ using UnityEngine;
 
 public class CombatRoom : RoomBase1
 {
+    [SerializeField] private GameObject[] Enemies;
+
+  
+    Vector3 roomCoords;
+    private bool enemyHere = true;
+
+    public void Awake()
+    {
+        var enemyInstance = Instantiate(Enemies[Random.Range(0, Enemies.Length)], transform);
+        enemyInstance.transform.position = new Vector3(roomCoords.x, 7, roomCoords.y);
+    }
+
     public new void SetRoomLocation(Vector3 coordinates)
     {
-        
+        roomCoords = coordinates;
     }
 
     public override void OnRoomEntered()
     {
-        Debug.Log("enemies are here!");
+        Debug.Log("an enemy is here!");
+        if (enemyHere)
+        {
+            StartCombat();
+        }
     }
 
     public override void OnRoomSearched()
     {
-        Debug.Log("you found old weapons");
+        
+    }
+
+    private void StartCombat()
+    {
+        _playerController._inCombat = true;
     }
 }

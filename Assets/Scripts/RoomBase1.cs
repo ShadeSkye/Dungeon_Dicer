@@ -12,6 +12,8 @@ public class RoomBase1 : MonoBehaviour
     public RoomBase1 West => _west;
 
     [SerializeField] private GameObject NorthDoor, EastDoor, SouthDoor, WestDoor;
+    protected PlayerController _playerController;
+    internal int Collision = 0;
 
     public virtual void SetRoomLocation(Vector3 coordinates)
     {
@@ -21,6 +23,11 @@ public class RoomBase1 : MonoBehaviour
     public virtual void OnRoomEntered()
     {
         Debug.Log("its a normal room");
+    }
+   
+    public virtual void SetPlayerReference(PlayerController player)
+    {
+        _playerController = player;
     }
 
     public virtual void OnRoomExited()

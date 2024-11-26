@@ -11,6 +11,8 @@ public class MapManager : MonoBehaviour
 
     public Dictionary<Vector3, RoomBase1> _rooms = new Dictionary<Vector3, RoomBase1>();
 
+    private bool spawnRoom = false;
+
     /// <summary>
     /// Create rooms using prefabs
     /// </summary>
@@ -22,11 +24,25 @@ public class MapManager : MonoBehaviour
             {
                 Vector3 coords = new Vector3(x * RoomSize, 0, z * RoomSize);
 
-                var roomInstance = Instantiate(RoomPrefabs[Random.Range(0, RoomPrefabs.Length)], transform);
-
-                roomInstance.SetRoomLocation(coords);
-
-                _rooms.Add(coords, roomInstance);
+                if(spawnRoom != true)
+                {
+                    var roomInstance = Instantiate(RoomPrefabs[4], transform);
+                    roomInstance.SetRoomLocation(coords);
+                    _rooms.Add(coords, roomInstance);
+                    spawnRoom = true;
+                }
+                else if(coords.x == RoomSize * (MapSize -1) && coords.z == RoomSize * (MapSize -1))
+                {
+                    var roomInstance = Instantiate(RoomPrefabs[3], transform);
+                    roomInstance.SetRoomLocation(coords);
+                    _rooms.Add(coords, roomInstance);
+                }
+                else
+                {
+                    var roomInstance = Instantiate(RoomPrefabs[Random.Range(0, 3)], transform);
+                    roomInstance.SetRoomLocation(coords);
+                    _rooms.Add(coords, roomInstance);
+                }
             }
         }
 

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationTime: 0.5
   MovementTime: 2
+  damage: 0
 --- !u!54 &4969396610249480391
 Rigidbody:
   m_ObjectHideFlags: 0
