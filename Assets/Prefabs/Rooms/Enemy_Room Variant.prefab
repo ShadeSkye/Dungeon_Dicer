@@ -245,8 +245,11 @@ MonoBehaviour:
   SouthDoor: {fileID: 157257846249398052}
   WestDoor: {fileID: 4787099394132618088}
   Enemies:
-  - {fileID: 6842355393843087852, guid: d8eaffa38b2d2134a90554927ee62c8c, type: 3}
-  - {fileID: 8209066293569383873, guid: 3d9424d25a8ff9246b55e033c230d7d7, type: 3}
+  - {fileID: 4455031737953277509, guid: d1ff3fd799313254ea5925daf09b5aa3, type: 3}
+  - {fileID: 1504043514396183453, guid: e5ebe9a2ce11d3d41a28f27478b3ec90, type: 3}
+  - {fileID: 662203933764025745, guid: 82718707a6b97e5498eaad0a29f71e2e, type: 3}
+  - {fileID: 4093168064719859762, guid: 5a4fa7b9471d11143b1c8137bf0c8b07, type: 3}
+  combatManagerPrefab: {fileID: 8328485849020836305, guid: 61ad0f99306b3fb4b8fe4e6d7a8a4eea, type: 3}
 --- !u!1 &4787099394132618088 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4071320469114038731, guid: 5f4daf9efafac184585ea2f67bdafd31, type: 3}

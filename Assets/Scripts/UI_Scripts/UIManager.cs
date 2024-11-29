@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameWin;
 
     public static bool PlayerCanLeave = false;
+    public bool InventoryOpen = false;
 
    public void GoToMenu()
     {
@@ -41,26 +42,42 @@ public class UIManager : MonoBehaviour
     public void ShowWinScreen()
     {
         gameWin.SetActive(true);
+        PlayerCanLeave = false;
+    }
+
+    public void SetInventoryOpen()
+    {
+        if (InventoryOpen)
+        {
+            InventoryOpen = false;
+        }
+        else if (!InventoryOpen)
+        {
+            InventoryOpen = true;
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!InventoryOpen)
         {
-            if(GameManager.GamePaused == false)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                pauseMenu.SetActive(true);
-                GameManager.GamePaused = true;
+                if (GameManager.GamePaused == false)
+                {
+                    pauseMenu.SetActive(true);
+                    GameManager.GamePaused = true;
+                }
+                else if (GameManager.GamePaused == true)
+                {
+                    pauseMenu.SetActive(false);
+                    GameManager.GamePaused = false;
+                }
             }
-            else if (GameManager.GamePaused == true)
+            if (PlayerCanLeave && Input.GetKeyDown(KeyCode.E) && !GameManager.GamePaused)
             {
-                pauseMenu.SetActive(false);
-                GameManager.GamePaused = false;
+                PlayerWantsToLeave();
             }
-        }
-        if(PlayerCanLeave && Input.GetKeyDown(KeyCode.E) && !GameManager.GamePaused)
-        {
-            PlayerWantsToLeave();
         }
     }
 }

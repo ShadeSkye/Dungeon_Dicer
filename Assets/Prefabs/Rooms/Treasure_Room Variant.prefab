@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7ae7e17532c25bb4794a23d03a31a1cb, type: 2}
+    - target: {fileID: 820921435003058221, guid: 5f4daf9efafac184585ea2f67bdafd31, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 820921435003058221, guid: 5f4daf9efafac184585ea2f67bdafd31, type: 3}
+      propertyPath: m_Size.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 949198535487305527, guid: 5f4daf9efafac184585ea2f67bdafd31, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -269,6 +277,9 @@ MonoBehaviour:
   EastDoor: {fileID: 5247101063978724595}
   SouthDoor: {fileID: 300142755436597632}
   WestDoor: {fileID: 4930265777222788556}
+  Items:
+  - {fileID: 2822317148033731807, guid: 3fc0669b82a646644849b4ca300f9d78, type: 3}
+  - {fileID: 2791770746694473636, guid: 77eac54f3ea8c86459ef464935171c2f, type: 3}
 --- !u!1 &5247101063978724595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3763492379466014964, guid: 5f4daf9efafac184585ea2f67bdafd31, type: 3}

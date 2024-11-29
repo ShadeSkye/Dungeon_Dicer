@@ -68,8 +68,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health_Potion
       objectReference: {fileID: 0}
+    - target: {fileID: 8776092207063721000, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776092207063721000, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776092207063721000, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1259861933742072854}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4628451096959556397}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6686945173914472756}
   m_SourcePrefab: {fileID: 100100000, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+--- !u!1 &2822317148033731807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ffeb2cc3675177a47a036d4fd592c1de, type: 3}
+  m_PrefabInstance: {fileID: 3164776750249308558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1259861933742072854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822317148033731807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8839e6efdda4841bcfce3f657342bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: {fileID: 0}
+--- !u!65 &-4628451096959556397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822317148033731807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 120, y: 120, z: 120}
+  m_Center: {x: 0, y: 0, z: 10}
+--- !u!114 &6686945173914472756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822317148033731807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27f8ac86e3e6f644b052f831029ab28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items: {fileID: 11400000, guid: 56b1cb3c0ecfb624dbf513857c9633de, type: 2}
