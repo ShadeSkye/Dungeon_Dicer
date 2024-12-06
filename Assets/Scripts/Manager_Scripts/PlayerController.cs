@@ -68,12 +68,12 @@ public class PlayerController : MonoBehaviour
     {
         currentHP += value;
 
-        UIManager.Instance.UpdatePlayerHP($"{currentHP}/{maxHp}");
-
         if(currentHP > maxHp)
         {
             currentHP = maxHp;
         }
+
+        UIManager.Instance.UpdatePlayerHP($"{currentHP}/{maxHp}");
     }
 
     //increases the player's damage
