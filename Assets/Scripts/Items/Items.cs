@@ -11,11 +11,7 @@ public class Items : ScriptableObject
     public int value;
     public Sprite icon;
     public ItemType itemType;
-
-    public void ItemSelected()
-    {
-       // InventoryManager.Instance.ShowDescription();
-    }
+    public int Score;
 
     public enum ItemType
     {

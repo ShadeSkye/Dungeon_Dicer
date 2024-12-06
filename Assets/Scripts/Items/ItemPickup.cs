@@ -6,16 +6,12 @@ public class ItemPickup : MonoBehaviour
 {
     public Items Items;
 
+    //picks up the item
     public void Pickup()
     {
         InventoryManager.Instance.Add(Items);
-        //DestroyImmediate(this, true);
+        PlayerController.Instance.Score += Items.Score;
         gameObject.SetActive(false);
         
-    }
-
-    private void OnMouseDown()
-    {
-        Pickup();
     }
 }

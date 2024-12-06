@@ -28,18 +28,21 @@ public class PlayerController : MonoBehaviour
     private float _movementTimer = 0.0f;
     private Vector3 _previousPosition;
     private Vector3 _moveToPosition;
-    internal bool _inCombat = false;
+    public bool InCombat = false;
     public  bool ItemInPath = false;
 
     public int baseATK = 10;
-    private int maxHp = 100;
-    public int currentHP = 50;
+    public int maxHp = 100;
+    public int currentHP = 100;
     public static int PlayerDamage;
     public ItemPickup current_item;
+
+    public int Score = 0;
 
     private void Awake()
     {
         Instance = this;
+        UIManager.Instance.UpdatePlayerHP($"{currentHP}/{maxHp}");
     }
 
     public void Setup()
@@ -64,6 +67,9 @@ public class PlayerController : MonoBehaviour
     public void Heal(int value)
     {
         currentHP += value;
+
+        UIManager.Instance.UpdatePlayerHP($"{currentHP}/{maxHp}");
+
         if(currentHP > maxHp)
         {
             currentHP = maxHp;
@@ -142,13 +148,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.GamePaused == false)
         {
-            if (_inCombat)
+            if (InCombat)
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Debug.Log("You defeated the enemy!");
-                    _inCombat = false;
-                }
+                
             }
             else if (ItemInPath)
             {
@@ -156,10 +158,10 @@ public class PlayerController : MonoBehaviour
                 {
                     if (current_item != null)
                     {
+                        _currentRoom.OnRoomSearched();
                         current_item.Pickup();
                         Debug.Log("You picked up an item!");
                         ItemInPath = false;
-
                     }
                 }
             }

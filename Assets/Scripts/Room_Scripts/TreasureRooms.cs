@@ -32,6 +32,6 @@ public class TreasureRooms : RoomBase1
 
     public override void OnRoomSearched()
     {
-        
+        ItemHere = false;
     }
 }

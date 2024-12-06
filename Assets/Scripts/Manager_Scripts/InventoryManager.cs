@@ -21,16 +21,19 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
+    //adds items to the list
     public void Add(Items item)
     {
         Items.Add(item);
     }
 
+    //removes items from the list
     public void Remove(Items item)
     {
         Items.Remove(item);
     }
 
+    //displays the items in the inventory
     public void ListItems()
     {
         //Cleans up inventory
@@ -48,34 +51,29 @@ public class InventoryManager : MonoBehaviour
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            obj.GetComponent<Button>().onClick.AddListener(()=> ShowDescription(item.itemDesc, item));
+            obj.GetComponent<Button>().onClick.RemoveAllListeners();
+            obj.GetComponent<Button>().onClick.AddListener(()=> ShowDescription(item.itemDesc, item, obj));
         }
 
         SetInventoryItems();
     }
 
-    public void ShowDescription(string desc, Items items)
+    //shows the description ui
+    public void ShowDescription(string desc, Items items, GameObject target)
     {
-        //Debug.Log(InventoryItemDesc);
-        //Debug.Log(UseItemButton);
-
-        GameObject obj = Instantiate(UseItemButton, DescriptionContent);
-        //var button = obj.transform.Find("Button").GetComponent<Button>();
-        //var image = obj.transform.Find("Button").GetComponent<Image>();
-        //var text = obj.transform.Find("Text").GetComponent<Text>();
-
         InventoryItemDesc.SetActive(true);
         InventoryItemDesc.GetComponent<ItemInfoDisplay>().SetItemDescriptionText(desc);
-        UseItemButton.transform.Find("UseItemButton(Clone)").GetComponent<Button>().onClick.AddListener(() => ItemController.Instance.UseItem(items));
 
-        //button.enabled = true;
-        //image.enabled = true;
-        //text.enabled = true;
+        var button = UseItemButton.transform.Find("Button").GetComponent<Button>();
+
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => ItemController.Instance.UseItem(items));
+        button.onClick.AddListener(() => Destroy(target));
     }
 
+    //hides the description ui
     public void HideDescription()
     {
-
         InventoryItemDesc.SetActive(false);
     }
 

@@ -8,12 +8,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MapManager GameMapPrefab;
     [SerializeField] private PlayerController PlayerPrefab;
     [SerializeField] private GameManager _gameManager;
-    
+
+    public static GameManager Instance;
     private MapManager _gameMap;
     private PlayerController _playerController;
 
     public static bool GamePaused = false;
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void Start()
     {
         GameManagerSetup();
@@ -75,5 +81,10 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         GamePaused = false;
+    }
+
+    public void GameOverState()
+    {
+        UIManager.Instance.ShowGameOver();
     }
 } 

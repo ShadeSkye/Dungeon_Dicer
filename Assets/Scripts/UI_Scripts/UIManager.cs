@@ -1,17 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject exitMenu;
     [SerializeField] GameObject gameWin;
+    [SerializeField] GameObject gameLose;
+    [SerializeField] GameObject combatScreen;
+    [SerializeField] GameObject inventoryButton;
+    [SerializeField] Text PlayerHealth;
+    [SerializeField] Text EnemyHealth;
+    [SerializeField] Text winScreenScore;
+    [SerializeField] Text gameOverScreenScore;
+
+    public static UIManager Instance;
 
     public static bool PlayerCanLeave = false;
     public bool InventoryOpen = false;
+    private bool buttonActive = true;
 
-   public void GoToMenu()
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void GoToMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         GameManager.GamePaused = false;
@@ -41,8 +57,17 @@ public class UIManager : MonoBehaviour
 
     public void ShowWinScreen()
     {
+        PlayerController.Instance.Score += 500;
+        winScreenScore.text = $"Final score: {PlayerController.Instance.Score}";
         gameWin.SetActive(true);
         PlayerCanLeave = false;
+    }
+
+    public void ShowGameOver()
+    {
+        gameOverScreenScore.text = $"Final score: {PlayerController.Instance.Score}";
+        gameLose.SetActive(true);
+        GameManager.GamePaused = true;
     }
 
     public void SetInventoryOpen()
@@ -57,6 +82,46 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void HideCombatScreen()
+    {
+        if (PlayerController.Instance.InCombat)
+        {
+            combatScreen.SetActive(false);
+        }
+    }
+
+    public void ShowCombatScreen()
+    {
+        if (PlayerController.Instance.InCombat)
+        {
+            combatScreen.SetActive(true);
+        }
+    }
+
+    public void ToggleInventoryButton()
+    {
+        if (buttonActive)
+        {
+            inventoryButton.SetActive(false);
+            buttonActive = false;
+        }
+        else if (!buttonActive)
+        {
+            inventoryButton.SetActive(true);
+            buttonActive = true;
+        }
+    }
+
+    public void UpdatePlayerHP(string value)
+    {
+        PlayerHealth.text = value;
+    }
+
+    public void UpdateEnemyHP(string value)
+    {
+        EnemyHealth.text = value;
+    }
+
     private void Update()
     {
         if (!InventoryOpen)
@@ -66,11 +131,25 @@ public class UIManager : MonoBehaviour
                 if (GameManager.GamePaused == false)
                 {
                     pauseMenu.SetActive(true);
+                    HideCombatScreen();
+
+                    if (!PlayerController.Instance.InCombat)
+                    {
+                        ToggleInventoryButton();
+                    }
+
                     GameManager.GamePaused = true;
                 }
                 else if (GameManager.GamePaused == true)
                 {
                     pauseMenu.SetActive(false);
+                    ShowCombatScreen();
+
+                    if (!PlayerController.Instance.InCombat)
+                    {
+                        ToggleInventoryButton();
+                    }
+
                     GameManager.GamePaused = false;
                 }
             }

@@ -39,11 +39,12 @@ public class ItemController : MonoBehaviour
                 PlayerController.Instance.IncreaseAttack(items.value);
                 break;
         }
-        RemoveItem(items);
-    }
 
-    public void ResetButton()
-    {
-        Destroy(InventoryManager.Instance.UseItemButton.gameObject);
+        if (PlayerController.Instance.InCombat)
+        {
+            CombatManager.Instance.PlayersTurn = false;
+        }
+
+        RemoveItem(items);
     }
 }

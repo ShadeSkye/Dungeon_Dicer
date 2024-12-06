@@ -49,8 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationTime: 0.5
   MovementTime: 2
+  InCombat: 0
+  ItemInPath: 0
   baseATK: 10
-  currentHP: 50
+  maxHp: 100
+  currentHP: 100
+  current_item: {fileID: 0}
 --- !u!54 &4969396610249480391
 Rigidbody:
   m_ObjectHideFlags: 0
