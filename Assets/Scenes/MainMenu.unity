@@ -998,13 +998,13 @@ MonoBehaviour:
 
     WASD Movement
 
-    E to interact with items, enemies (there
-    is no combat loop yet), and other interactable objects
+    E to interact with items, and other
+    interactable objects
 
-    Escape to pause the
-    game
+    Escape to pause the game
 
-    Buttons to open and close the inventory'
+    Buttons to open and close
+    the inventory'
 --- !u!222 &745455896
 CanvasRenderer:
   m_ObjectHideFlags: 0
